@@ -3,1141 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Легенды автопрома: Porsche 911 и BMW E36</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Porsche 911 и BMW E36</title>
     <style>
-        :root {
-            --porsche-red: #cc0000;
-            --bmw-blue: #0066b1;
-            --dark: #1a1a1a;
-            --light: #f8f8f8;
-            --gray: #333333;
-            --transition: all 0.3s ease;
-        }
-        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Montserrat', Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
         
         body {
-            background-color: var(--light);
-            color: var(--dark);
-            overflow-x: hidden;
-        }
-        
-        /* Навигация */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            padding: 20px 10%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: rgba(0, 0, 0, 0.8);
-            transition: var(--transition);
-        }
-        
-        header.scrolled {
-            padding: 15px 10%;
-            background-color: rgba(0, 0, 0, 0.95);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-        }
-        
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 40px;
-            margin-right: 10px;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 30px;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: white;
-            font-weight: 500;
-            font-size: 18px;
-            transition: var(--transition);
-            position: relative;
-        }
-        
-        nav ul li a:hover {
-            color: var(--porsche-red);
-        }
-        
-        nav ul li a.bmw:hover {
-            color: var(--bmw-blue);
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            background: var(--porsche-red);
-            bottom: -5px;
-            left: 0;
-            transition: var(--transition);
-        }
-        
-        nav ul li a.bmw::after {
-            background: var(--bmw-blue);
-        }
-        
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-        
-        .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 24px;
-            color: white;
-        }
-        
-        /* Герой секция */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
-        }
-        
-        .hero-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-        
-        .hero-content {
-            text-align: center;
-            z-index: 1;
-            max-width: 800px;
-            padding: 0 20px;
-            animation: fadeInUp 1s ease;
-        }
-        
-        .hero h1 {
-            font-size: 72px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.2;
-            color: white;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-        }
-        
-        .hero h1 span.porsche {
-            color: var(--porsche-red);
-        }
-        
-        .hero h1 span.bmw {
-            color: var(--bmw-blue);
-        }
-        
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 40px;
-            color: rgba(255, 255, 255, 0.9);
+            background: #f8f8f8;
+            color: #333;
             line-height: 1.6;
         }
         
-        .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            border-radius: 50px;
+        header {
+            background: #000;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        nav {
+            margin-top: 10px;
+        }
+        
+        nav a {
+            color: white;
             text-decoration: none;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-            font-size: 18px;
             margin: 0 10px;
         }
         
-        .btn-porsche {
-            background-color: var(--porsche-red);
-            color: white;
+        section {
+            padding: 30px 15px;
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
-        .btn-porsche:hover {
-            background-color: #b30000;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(204, 0, 0, 0.3);
+        h1, h2, h3 {
+            margin-bottom: 15px;
         }
         
-        .btn-bmw {
-            background-color: var(--bmw-blue);
-            color: white;
-        }
-        
-        .btn-bmw:hover {
-            background-color: #005a9c;
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 102, 177, 0.3);
-        }
-        
-        /* Раздел моделей */
-        .models {
-            padding: 100px 10%;
-        }
-        
-        .section-title {
+        h2 {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
         }
         
-        .section-title h2 {
-            font-size: 48px;
-            position: relative;
-            display: inline-block;
-            padding-bottom: 15px;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            width: 100px;
-            height: 4px;
-            background: var(--gray);
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .model-container {
+        .car-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 50px;
-            margin-bottom: 80px;
+            gap: 20px;
+            margin-bottom: 40px;
         }
         
-        .model-info {
+        .car-info {
             flex: 1;
             min-width: 300px;
         }
         
-        .model-info h3 {
-            font-size: 36px;
-            margin-bottom: 20px;
-            color: var(--dark);
+        .car-gallery {
+            flex: 1;
+            min-width: 300px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
         
-        .model-info h3.porsche {
-            color: var(--porsche-red);
-        }
-        
-        .model-info h3.bmw {
-            color: var(--bmw-blue);
-        }
-        
-        .model-info p {
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            color: var(--gray);
+        .car-gallery img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
         }
         
         .specs {
-            margin-top: 30px;
+            margin-top: 20px;
         }
         
         .spec-item {
-            display: flex;
-            margin-bottom: 15px;
-        }
-        
-        .spec-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--dark);
-            font-size: 18px;
-            margin-right: 15px;
-            flex-shrink: 0;
-        }
-        
-        .porsche .spec-icon {
-            background: var(--porsche-red);
-            color: white;
-        }
-        
-        .bmw .spec-icon {
-            background: var(--bmw-blue);
-            color: white;
-        }
-        
-        .spec-text h4 {
-            font-size: 18px;
-            margin-bottom: 5px;
-        }
-        
-        .spec-text p {
-            color: #666;
-            margin-bottom: 0;
-        }
-        
-        .model-gallery {
-            flex: 1;
-            min-width: 300px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-        
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-            aspect-ratio: 1/1;
-        }
-        
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-        }
-        
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-item .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            padding: 20px;
-            color: white;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .gallery-item:hover .overlay {
-            opacity: 1;
-        }
-        
-        /* История */
-        .history {
-            padding: 100px 10%;
-            background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9)), url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1583&q=80') no-repeat center/cover;
-            color: white;
-            text-align: center;
-        }
-        
-        .history h2 {
-            font-size: 48px;
-            margin-bottom: 40px;
-        }
-        
-        .timeline {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .timeline::after {
-            content: '';
-            position: absolute;
-            width: 6px;
-            background: linear-gradient(to bottom, var(--porsche-red), var(--bmw-blue));
-            top: 0;
-            bottom: 0;
-            left: 50%;
-            margin-left: -3px;
-            border-radius: 3px;
-        }
-        
-        .timeline-item {
-            padding: 10px 40px;
-            position: relative;
-            width: 50%;
-            box-sizing: border-box;
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            width: 25px;
-            height: 25px;
-            background-color: white;
-            border: 4px solid var(--porsche-red);
-            top: 15px;
-            border-radius: 50%;
-            z-index: 1;
-        }
-        
-        .timeline-item.bmw::after {
-            border-color: var(--bmw-blue);
-        }
-        
-        .left {
-            left: 0;
-            text-align: right;
-        }
-        
-        .right {
-            left: 50%;
-            text-align: left;
-        }
-        
-        .timeline-content {
-            padding: 20px 30px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            backdrop-filter: blur(5px);
-        }
-        
-        .timeline-content h3 {
-            font-size: 24px;
             margin-bottom: 10px;
-        }
-        
-        .timeline-content p {
-            line-height: 1.6;
-        }
-        
-        /* Сравнение */
-        .comparison {
-            padding: 100px 10%;
-            background-color: var(--light);
         }
         
         .comparison-table {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
         
-        .table-header {
-            display: flex;
-            background-color: var(--dark);
-            color: white;
-        }
-        
-        .table-header div {
-            flex: 1;
-            padding: 20px;
-            text-align: center;
-            font-weight: 600;
-            font-size: 20px;
-        }
-        
-        .table-header .porsche {
-            background-color: var(--porsche-red);
-        }
-        
-        .table-header .bmw {
-            background-color: var(--bmw-blue);
-        }
-        
-        .table-row {
-            display: flex;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .table-row:last-child {
-            border-bottom: none;
-        }
-        
-        .table-row div {
-            flex: 1;
-            padding: 15px 20px;
-            text-align: center;
-        }
-        
-        .table-row .spec-name {
-            background-color: #f5f5f5;
-            font-weight: 600;
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
             text-align: left;
         }
         
-        /* Галерея */
-        .gallery-section {
-            padding: 100px 10%;
-            background-color: var(--dark);
+        .comparison-table th {
+            background: #333;
             color: white;
         }
         
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 50px;
+        .porsche {
+            color: #cc0000;
         }
         
-        .gallery-card {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            aspect-ratio: 16/9;
+        .bmw {
+            color: #0066b1;
         }
         
-        .gallery-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .gallery-card:hover img {
-            transform: scale(1.1);
-        }
-        
-        .gallery-card .card-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 20px;
-            opacity: 0;
-            transition: var(--transition);
-        }
-        
-        .gallery-card:hover .card-overlay {
-            opacity: 1;
-        }
-        
-        .card-overlay h3 {
-            font-size: 22px;
-            margin-bottom: 10px;
-            transform: translateY(20px);
-            transition: var(--transition);
-        }
-        
-        .card-overlay p {
-            transform: translateY(20px);
-            transition: var(--transition);
-            transition-delay: 0.1s;
-        }
-        
-        .gallery-card:hover .card-overlay h3,
-        .gallery-card:hover .card-overlay p {
-            transform: translateY(0);
-        }
-        
-        /* Футер */
         footer {
-            background: linear-gradient(to right, var(--porsche-red), var(--bmw-blue));
+            background: #333;
             color: white;
-            padding: 50px 10% 20px;
             text-align: center;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            margin-bottom: 40px;
-            gap: 30px;
-        }
-        
-        .footer-col {
-            flex: 1;
-            min-width: 200px;
-        }
-        
-        .footer-col h3 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            width: 40px;
-            height: 2px;
-            background: white;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-        
-        .footer-col p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            transition: var(--transition);
-        }
-        
-        .social-links a:hover {
-            background: white;
-            color: var(--porsche-red);
-            transform: translateY(-3px);
-        }
-        
-        .copyright {
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 14px;
-        }
-        
-        /* Анимации */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @keyframes zoomIn {
-            from {
-                transform: scale(0.9);
-                opacity: 0;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
-        /* Адаптивность */
-        @media (max-width: 1200px) {
-            header {
-                padding: 15px 5%;
-            }
-            
-            .hero h1 {
-                font-size: 60px;
-            }
-            
-            .models, .history, .comparison, .gallery-section {
-                padding: 80px 5%;
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 48px;
-            }
-            
-            .timeline::after {
-                left: 31px;
-            }
-            
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
-            }
-            
-            .timeline-item::after {
-                left: 18px;
-            }
-            
-            .left, .right {
-                left: 0;
-                text-align: left;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-                z-index: 1001;
-            }
-            
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                max-width: 300px;
-                height: 100vh;
-                background: rgba(0, 0, 0, 0.9);
-                padding: 80px 30px;
-                transition: var(--transition);
-                backdrop-filter: blur(10px);
-            }
-            
-            nav.active {
-                right: 0;
-            }
-            
-            nav ul {
-                flex-direction: column;
-            }
-            
-            nav ul li {
-                margin: 15px 0;
-            }
-            
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-            
-            .btn {
-                padding: 12px 25px;
-                font-size: 16px;
-                margin: 5px;
-            }
-            
-            .section-title h2 {
-                font-size: 32px;
-            }
-            
-            .model-container {
-                flex-direction: column;
-            }
-            
-            .table-header div {
-                font-size: 16px;
-                padding: 15px 10px;
-            }
-            
-            .table-row div {
-                padding: 10px;
-                font-size: 14px;
-            }
-        }
-        
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .btn-group {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-            }
-            
-            .btn {
-                width: 100%;
-                margin: 5px 0;
-            }
-            
-            .gallery-grid {
-                grid-template-columns: 1fr;
-            }
+            padding: 20px;
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <!-- Навигация -->
-    <header id="header">
-        <a href="#" class="logo">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Porsche_logo.png/600px-Porsche_logo.png" alt="Porsche Logo">
-            <span>&</span>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/BMW.svg/600px-BMW.svg.png" alt="BMW Logo">
-        </a>
-        <div class="menu-toggle">
-            <i class="fas fa-bars"></i>
-        </div>
+    <header>
+        <h1>Porsche 911 и BMW E36</h1>
         <nav>
-            <ul>
-                <li><a href="#porsche">Porsche 911</a></li>
-                <li><a href="#bmw" class="bmw">BMW E36</a></li>
-                <li><a href="#history">История</a></li>
-                <li><a href="#comparison">Сравнение</a></li>
-                <li><a href="#gallery">Галерея</a></li>
-            </ul>
+            <a href="#porsche">Porsche 911</a>
+            <a href="#bmw">BMW E36</a>
+            <a href="#comparison">Сравнение</a>
         </nav>
     </header>
 
-    <!-- Герой секция -->
-    <section class="hero">
-        <video autoplay muted loop class="hero-video">
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-sports-car-driving-fast-on-a-race-track-42495-large.mp4" type="video/mp4">
-        </video>
-        <div class="hero-content">
-            <h1><span class="porsche">Porsche 911</span> и <span class="bmw">BMW E36</span></h1>
-            <p>Две легенды автомобильного мира, олицетворяющие немецкое инженерное мастерство и страсть к вождению. Исследуйте историю, характеристики и уникальные особенности этих культовых автомобилей.</p>
-            <div>
-                <a href="#porsche" class="btn btn-porsche">Porsche 911</a>
-                <a href="#bmw" class="btn btn-bmw">BMW E36</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Porsche 911 -->
-    <section class="models" id="porsche">
-        <div class="section-title">
-            <h2>Porsche 911</h2>
-        </div>
-        <div class="model-container porsche">
-            <div class="model-info">
+    <section id="porsche">
+        <h2 class="porsche">Porsche 911</h2>
+        <div class="car-container">
+            <div class="car-info">
                 <h3 class="porsche">Легендарный спорткар</h3>
-                <p>Porsche 911 - это икона автомобилестроения, производящаяся с 1964 года. Своей узнаваемой формой и заднемоторной компоновкой 911 обязан Ферри Порше, сыну основателя компании.</p>
-                <p>Современные 911 сочетают в себе богатое наследие с передовыми технологиями, предлагая непревзойденные динамические характеристики и комфорт.</p>
+                <p>Porsche 911 - икона автомобилестроения с 1964 года. Узнаваемая форма и заднемоторная компоновка.</p>
                 
                 <div class="specs">
                     <div class="spec-item">
-                        <div class="spec-icon">
-                            <i class="fas fa-tachometer-alt"></i>
-                        </div>
-                        <div class="spec-text">
-                            <h4>Двигатель</h4>
-                            <p>3.0L Twin-Turbo Flat-6 (385 л.с.)</p>
-                        </div>
+                        <h4>Двигатель</h4>
+                        <p>3.0L Twin-Turbo Flat-6 (385 л.с.)</p>
                     </div>
                     <div class="spec-item">
-                        <div class="spec-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <div class="spec-text">
-                            <h4>Разгон 0-100 км/ч</h4>
-                            <p>4.2 секунды</p>
-                        </div>
+                        <h4>Разгон 0-100 км/ч</h4>
+                        <p>4.2 секунды</p>
                     </div>
                     <div class="spec-item">
-                        <div class="spec-icon">
-                            <i class="fas fa-weight"></i>
-                        </div>
-                        <div class="spec-text">
-                            <h4>Вес</h4>
-                            <p>1,490 кг</p>
-                        </div>
+                        <h4>Вес</h4>
+                        <p>1,490 кг</p>
                     </div>
                 </div>
             </div>
-            <div class="model-gallery">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Porsche 911">
-                    <div class="overlay">
-                        <h3>Porsche 911 Carrera</h3>
-                        <p>Современное воплощение легенды</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80" alt="Porsche 911 Interior">
-                    <div class="overlay">
-                        <h3>Роскошный салон</h3>
-                        <p>Эргономика и комфорт</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Porsche 911 Engine">
-                    <div class="overlay">
-                        <h3>Легендарный оппозитный двигатель</h3>
-                        <p>Сердце Porsche</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Porsche 911 Rear">
-                    <div class="overlay">
-                        <h3>Узнаваемый профиль</h3>
-                        <p>Дизайн, ставший классикой</p>
-                    </div>
-                </div>
+            <div class="car-gallery">
+                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Porsche 911">
+                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Porsche Interior">
+                <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Porsche Engine">
+                <img src="https://images.unsplash.com/photo-1583121274602-3e2820c69888?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Porsche Rear">
             </div>
         </div>
     </section>
 
-    <!-- BMW E36 -->
-    <section class="models" id="bmw">
-        <div class="section-title">
-            <h2>BMW E36</h2>
-        </div>
-        <div class="model-container bmw">
-            <div class="model-info">
+    <section id="bmw">
+        <h2 class="bmw">BMW E36</h2>
+        <div class="car-container">
+            <div class="car-info">
                 <h3 class="bmw">Идеальный баланс</h3>
-                <p>BMW 3 серии в кузове E36 производилась с 1990 по 2000 год и считается одной из лучших в истории компании. Эта модель установила новые стандарты в своем классе.</p>
-                <p>E36 сочетает в себе спортивный характер, отличную управляемость и практичность, что делает ее популярной даже спустя десятилетия после выпуска.</p>
+                <p>BMW 3 серии E36 (1990-2000) - эталон управляемости и практичности.</p>
                 
                 <div class="specs">
                     <div class="spec-item">
-                        <div class="spec-icon">
-                            <i class="fas fa-tachometer-alt"></i>
-                        </div>
-                        <div class="spec-text">
-                            <h4>Двигатель</h4>
-                            <p>2.5L I6 (192 л.с.)</p>
-                        </div>
+                        <h4>Двигатель</h4>
+                        <p>2.5L I6 (192 л.с.)</p>
                     </div>
                     <div class="spec-item">
-                        <div class="spec-icon">
-                            <i class="fas fa-rocket"></i>
-                        </div>
-                        <div class="spec-text">
-                            <h4>Разгон 0-100 км/ч</h4>
-                            <p>7.0 секунды</p>
-                        </div>
+                        <h4>Разгон 0-100 км/ч</h4>
+                        <p>7.0 секунды</p>
                     </div>
                     <div class="spec-item">
-                        <div class="spec-icon">
-                            <i class="fas fa-weight"></i>
-                        </div>
-                        <div class="spec-text">
-                            <h4>Вес</h4>
-                            <p>1,350 кг</p>
-                        </div>
+                        <h4>Вес</h4>
+                        <p>1,350 кг</p>
                     </div>
                 </div>
             </div>
-            <div class="model-gallery">
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80" alt="BMW E36">
-                    <div class="overlay">
-                        <h3>BMW E36 Coupe</h3>
-                        <p>Элегантность и спортивность</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="BMW E36 Interior">
-                    <div class="overlay">
-                        <h3>Классический интерьер</h3>
-                        <p>Функциональность и качество</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1364&q=80" alt="BMW E36 Engine">
-                    <div class="overlay">
-                        <h3>Рядный шестицилиндровый двигатель</h3>
-                        <p>Гармония мощности и надежности</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31e8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="BMW E36 Rear">
-                    <div class="overlay">
-                        <h3>Задний привод</h3>
-                        <p>Истинное удовольствие от вождения</p>
-                    </div>
-                </div>
+            <div class="car-gallery">
+                <img src="https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="BMW E36">
+                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="BMW Interior">
+                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="BMW Engine">
+                <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="BMW Rear">
             </div>
         </div>
     </section>
 
-    <!-- История -->
-    <section class="history" id="history">
-        <div class="section-title">
-            <h2>История легенд</h2>
-        </div>
-        <div class="timeline">
-            <div class="timeline-item left">
-                <div class="timeline-content">
-                    <h3>1964 - Дебют Porsche 911</h3>
-                    <p>Первое поколение Porsche 911 (901) представлено на Франкфуртском автосалоне. Автомобиль оснащался 2.0-литровым оппозитным шестицилиндровым двигателем мощностью 130 л.с.</p>
-                </div>
-            </div>
-            <div class="timeline-item right bmw">
-                <div class="timeline-content">
-                    <h3>1990 - Появление BMW E36</h3>
-                    <p>Начало производства третьего поколения BMW 3 серии. E36 предлагался в кузовах седан, купе, кабриолет и универсал, с двигателями от 1.6 до 3.2 литра.</p>
-                </div>
-            </div>
-            <div class="timeline-item left">
-                <div class="timeline-content">
-                    <h3>1973 - Porsche 911 Carrera RS</h3>
-                    <p>Появление легендарной Carrera RS 2.7 - первого специально разработанного для гонок 911. Автомобиль весил всего 900 кг и развивал 210 л.с.</p>
-                </div>
-            </div>
-            <div class="timeline-item right bmw">
-                <div class="timeline-content">
-                    <h3>1992 - BMW M3 E36</h3>
-                    <p>Представлена спортивная версия M3 с 3.0-литровым двигателем мощностью 286 л.с. Позже появилась версия с 3.2-литровым мотором (321 л.с.).</p>
-                </div>
-            </div>
-            <div class="timeline-item left">
-                <div class="timeline-content">
-                    <h3>1997 - Porsche 911 (996)</h3>
-                    <p>Первое поколение 911 с водяным охлаждением. Дизайн вызвал споры, но технические решения были передовыми для своего времени.</p>
-                </div>
-            </div>
-            <div class="timeline-item right bmw">
-                <div class="timeline-content">
-                    <h3>2000 - Конец производства E36</h3>
-                    <p>Последние экземпляры E36 сошли с конвейера, уступив место новому поколению E46. Всего было выпущено около 2.5 миллионов автомобилей.</p>
-                </div>
-            </div>
-        </div>
+    <section id="comparison">
+        <h2>Сравнение характеристик</h2>
+        <table class="comparison-table">
+            <tr>
+                <th>Характеристика</th>
+                <th class="porsche">Porsche 911</th>
+                <th class="bmw">BMW E36</th>
+            </tr>
+            <tr>
+                <td>Годы производства</td>
+                <td>1964-н.в.</td>
+                <td>1990-2000</td>
+            </tr>
+            <tr>
+                <td>Двигатель</td>
+                <td>3.0L Twin-Turbo Flat-6</td>
+                <td>2.5L I6</td>
+            </tr>
+            <tr>
+                <td>Мощность</td>
+                <td>385 л.с.</td>
+                <td>192 л.с.</td>
+            </tr>
+            <tr>
+                <td>0-100 км/ч</td>
+                <td>4.2 сек</td>
+                <td>7.0 сек</td>
+            </tr>
+        </table>
     </section>
 
-    <!-- Сравнение -->
-    <section class="comparison" id="comparison">
-        <div class="section-title">
-            <h2>Сравнение характеристик</h2>
-        </div>
-        <div class="comparison-table">
-            <div class="table-header">
-                <div>Характеристика</div
-		<div class="porsche">Porsche 911</div>
-                <div class="bmw">BMW E36</div>
-            </div>
-            <div class="table-row">
-                <div class="spec-name">Двигатель</div>
-                <div>3.0L Twin-Turbo Flat-6</div>
-                <div>2.5L I6</div>
-            </div>
-            <div class="table-row">
-                <div class="spec-name">Мощность</div>
-                <div>385 л.с.</div>
-                <div>192 л.с.</div>
-            </div>
-            <div class="table-row">
-                <div class="spec-name">Разгон 0-100 км/ч</div>
-                <div>4.2 секунды</div>
-                <div>7.0 секунды</div>
-            </div>
-            <div class="table-row">
-                <div class="spec-name">Максимальная скорость</div>
-                <div>300 км/ч</div>
-                <div>240 км/ч</div>
-            </div>
-            <div class="table-row">
-                <div class="spec-name">Вес</div>
-                <div>1,490 кг</div>
-                <div>1,350 кг</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Галерея -->
-    <section class="gallery-section" id="gallery">
-        <div class="section-title">
-            <h2>Галерея</h2>
-        </div>
-        <div class="gallery-grid">
-            <div class="gallery-card">
-                <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Porsche 911">
-                <div class="card-overlay">
-                    <h3>Porsche 911</h3>
-                    <p>Классика спортивного автопрома</p>
-                </div>
-            </div>
-            <div class="gallery-card">
-                <img src="https://images.unsplash.com/photo-1601758124510-52d02ddb7cbd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1480&q=80" alt="BMW E36">
-                <div class="card-overlay">
-                    <h3>BMW E36</h3>
-                    <p>Идеальный баланс стиля и мощности</p>
-                </div>
-            </div>
-            <div class="gallery-card">
-                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" alt="Porsche Interior">
-                <div class="card-overlay">
-                    <h3>Интерьер Porsche</h3>
-                    <p>Элегантность и комфорт</p>
-                </div>
-            </div>
-            <div class="gallery-card">
-                <img src="https://images.unsplash.com/photo-1580273916550-e323be2ae537?ixlib=rb-4.0.3&auto=format&fit=crop&w=1364&q=80" alt="BMW Interior">
-                <div class="card-overlay">
-                    <h3>Интерьер BMW</h3>
-                    <p>Спортивный дух и эргономика</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Футер -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-col">
-                <h3>О нас</h3>
-                <p>Мы исследуем легенды автопрома, их историю и уникальные характеристики.</p>
-            </div>
-            <div class="footer-col">
-                <h3>Контакты</h3>
-                <p>Email: info@example.com</p>
-                <p>Телефон: +7 (123) 456-78-90</p>
-            </div>
-            <div class="footer-col">
-                <h3>Социальные сети</h3>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            &copy; 2025 Легенды автопрома. Все права защищены.
-        </div>
+        <p>&copy; 2023 Porsche 911 и BMW E36</p>
     </footer>
-
-    <script>
-        // Скрипт для изменения заголовка при прокрутке
-        window.onscroll = function() {
-            const header = document.getElementById('header');
-            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        };
-
-        // Скрипт для открытия и закрытия меню на мобильных устройствах
-        const menuToggle = document.querySelector('.menu-toggle');
-        const nav = document.querySelector('nav');
-
-        menuToggle.addEventListener('click', () => {
-            nav.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>
